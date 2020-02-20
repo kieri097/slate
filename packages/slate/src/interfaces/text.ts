@@ -15,6 +15,9 @@ export interface Text {
 export const Text = {
   /**
    * Check if two text nodes are equal.
+   * @param {Text} text A textobject that we wan to perform the comparison on
+   * @param {Text} another The secon Text object to compare on
+   * @param {boolean} loose 
    */
 
   equals(
@@ -24,6 +27,7 @@ export const Text = {
   ): boolean {
     const { loose = false } = options
 
+    // We iterate over the the first Text element's key
     for (const key in text) {
       if (loose && key === 'text') {
         continue
@@ -71,6 +75,9 @@ export const Text = {
    */
 
   matches(text: Text, props: Partial<Text>): boolean {
+
+    // We iterate over the various keys of the Text object. If we hit the text key we just let it pass, but all other keys are compared to the properties that are provided. If one of them doesn't match we return false.
+    // 
     for (const key in props) {
       if (key === 'text') {
         continue

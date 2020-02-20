@@ -1,0 +1,45 @@
+## Element
+
+/**
+ * `Element` objects are a type of node in a Slate document that contain other
+ * element nodes or text nodes. They can be either "blocks" or "inlines"
+ * depending on the Slate editor's configuration.
+ */
+
+export interface Element {
+  children: Node[]
+  [key: string]: any
+}
+
+#relevant types
+**
+ * `ElementEntry` objects refer to an `Element` and the `Path` where it can be
+ * found inside a root node.
+ */
+
+export type ElementEntry = [Element, Path]
+
+#methods
+
+isElement
+isElementList
+matches
+
+
+isElement(value: any): value is Element
+/**
+* Check if a value implements the `Element` interface.
+*/
+
+isElementList(value: any): value is Element[]
+/**
+* Check if a value is an array of `Element` objects.
+*/
+
+matches(element: Element, props: Partial<Element>): boolean
+/**
+* Check if an element matches set of properties.
+*
+* Note: this checks custom properties, and it does not ensure that any
+* children are equivalent.
+*/
