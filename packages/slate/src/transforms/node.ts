@@ -31,6 +31,8 @@ export const NodeTransforms = {
       const { hanging = false, voids = false, mode = 'lowest' } = options
       let { at, match, select } = options
 
+      // First we check if the provided nodes is actually just a single node.
+      // If yes, then we put it into a list to conform with the case where we pass a NodeList
       if (Node.isNode(nodes)) {
         nodes = [nodes]
       }

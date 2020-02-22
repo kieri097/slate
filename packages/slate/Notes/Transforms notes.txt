@@ -1,0 +1,127 @@
+## Transforms
+
+
+
+#General Transforms
+
+transform(editor: Editor, op: Operation)
+/**
+* Transform the editor by an operation.
+*/
+
+types:
+
+insert_node
+insert_text
+merge_node
+move_node
+remove_node
+remove_text
+set_node
+set_selection
+split_node
+
+
+# Node Transforms
+
+insertNodes( editor: Editor, nodes: Node | Node[], options: { at?: Location match?:  node: Node) => boolean mode?: 'highest' | 'lowest' hanging?: boolean select?: boolean voids?: boolean } = {} ) 
+/**
+* Insert nodes at a specific location in the Editor.
+*/
+
+liftNodes( editor: Editor, options: { at?: Location match?: (node: Node) => boolean mode?: 'all' | 'highest' | 'lowest' voids?: boolean } = {} )
+/**
+* Lift nodes at a specific location upwards in the document tree, splitting
+* their parent in two if necessary.
+*/
+
+mergeNodes( editor: Editor, options: { at?: Location match?: (node: Node) => boolean mode?: 'highest' | 'lowest' hanging?: boolean voids?: boolean } = {} ) 
+/**
+* Merge a node at a location with the previous node of the same depth,
+* removing any empty containing nodes after the merge if necessary.
+*/
+
+moveNodes( editor: Editor, options: { at?: Location match?: (node: Node) => boolean mode?: 'all' | 'highest' | 'lowest' to: Path voids?: boolean })
+/**
+* Move the nodes at a location to a new location.
+*/
+
+removeNodes( editor: Editor, options: { at?: Location match?: (node: Node) => boolean mode?: 'highest' | 'lowest' hanging?: boolean voids?: boolean } = {})
+/**
+* Remove the nodes at a specific location in the document.
+*/
+
+setNodes( editor: Editor, props: Partial<Node>, options: { at?: Location match?:  node: Node) => boolean mode?: 'all' | 'highest' | 'lowest' hanging?: boolean split?:  boolean voids?: boolean } = {})
+/**
+* Set new properties on the nodes at a location.
+*/
+
+splitNodes( editor: Editor, options: { at?: Location match?: (node: Node) => boolean mode?: 'highest' | 'lowest' always?: boolean height?: number voids?: boolean } = {} )
+/**
+* Split the nodes at a specific location.
+*/
+
+/**
+unsetNodes( editor: Editor, props: string | string[], options: { at?: Location match?: node: Node) => boolean mode?: 'all' | 'highest' | 'lowest' split?: boolean voids?:  oolean } = {} ) 
+* Unset properties on the nodes at a location.
+*/
+
+unwrapNodes( editor: Editor, options: { at?: Location match?: (node: Node) => boolean mode?: 'all' | 'highest' | 'lowest' split?: boolean voids?: boolean })
+/**
+* Unwrap the nodes at a location from a parent node, splitting the parent if
+* necessary to ensure that only the content in the range is unwrapped.
+*/
+
+wrapNodes( editor: Editor, element: Element, options: { at?: Location match?: (node: Node) => boolean mode?: 'all' | 'highest' | 'lowest' split?: boolean voids?: boolean } = {})
+/**
+* Wrap the nodes at a location in a new container node, splitting the edges
+* of the range first to ensure that only the content in the range is wrapped.
+*/
+
+# Selection Transforms
+collapse( editor: Editor, options: { edge?: 'anchor' | 'focus' | 'start' | 'end' } = {} )
+/**
+* Collapse the selection.
+*/
+
+deselect(editor: Editor)
+/**
+* Unset the selection.
+*/
+
+move( editor: Editor, options: { distance?: number unit?: 'offset' | 'character' |  word' | 'line' reverse?: boolean edge?: 'anchor' | 'focus' | 'start' | 'end' } = {} )
+/**
+* Move the selection's point forward or backward.
+*/
+
+select(editor: Editor, target: Location) 
+/**
+* Set the selection to a new value.
+*/
+
+setPoint( editor: Editor, props: Partial<Point>, options: { edge?: 'anchor' | 'focus' | 'start' | 'end' } )
+/**
+* Set new properties on one of the selection's points.
+*/
+
+setSelection(editor: Editor, props: Partial<Range>)
+/**
+* Set new properties on the selection.
+*/
+
+#TextTransforms
+
+delete( editor: Editor, options: { at?: Location distance?: number unit?: 'character' | 'word' | 'line' | 'block' reverse?: boolean hanging?: boolean voids?: boolean } = {} )
+/**
+* Delete content in the editor.
+*/
+
+insertFragment(editor: Editor, fragment: Node[], options: { at?: Location hanging?: boolean voids?: boolean } = {}) 
+/**
+* Insert a fragment at a specific location in the editor.
+*/
+
+insertText( editor: Editor, text: string, options: { at?: Location voids?: boolean } = {} )
+/**
+* Insert a string of text in the Editor.
+*/
