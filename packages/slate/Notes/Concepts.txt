@@ -1,0 +1,33 @@
+Locations:
+/**
+ * The `Location` interface is a union of the ways to refer to a specific
+ * location in a Slate document: paths, points or ranges.
+ *
+ * Methods will often accept a `Location` instead of requiring only a `Path`,
+ * `Point` or `Range`. This eliminates the need for developers to manage
+ * converting between the different interfaces in their own code base.
+ */
+
+  a) A Path: A list of indices that describe a node's exact position in the node tree. Usually this is relative to the editor, but can be relative to any node object.
+  b) A Point: Combines a path with an offset that gives the distance in the node's text string
+  c) A Range: A set of Points that can be located either within one Node or distributed across multiple nodes.
+
+
+NodeEntry:
+/**
+ * `NodeEntry` objects are returned when iterating over the nodes in a Slate
+ * document tree. They consist of the node and its `Path` relative to the root
+ * node in the document.
+ */
+
+
+NodeMatch:
+**
+* A helper type for narrowing matched nodes with a predicate.
+*/
+
+type NodeMatch<T extends Node> =
+  | ((node: Node) => node is T)
+  | ((node: Node) => boolean)
+
+A function that is passed and used to determine if the Nodes match

@@ -37,6 +37,7 @@ export const NodeTransforms = {
         nodes = [nodes]
       }
 
+      // If no nodes were passed we simply return
       if (nodes.length === 0) {
         return
       }
@@ -45,7 +46,7 @@ export const NodeTransforms = {
 
       // By default, use the selection as the target location. But if there is
       // no selection, insert at the end of the document since that is such a
-      // common use case when inserting from a non-selected state.
+      // common use case when inserting from a non-selected state. If the there is no content yet in the document insert at the beginning which is also the end at that point.
       if (!at) {
         if (editor.selection) {
           at = editor.selection

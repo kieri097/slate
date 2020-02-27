@@ -1529,6 +1529,7 @@ export const Editor = {
       return range
     }
 
+    // Get the ancestor above the end Point
     const endBlock = Editor.above(editor, {
       at: end,
       match: n => Editor.isBlock(editor, n),
